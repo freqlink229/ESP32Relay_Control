@@ -52,7 +52,7 @@
     .relay-card button:hover {
       opacity: 0.8;
     }
-    #allOffBtn, #logoutBtn {
+    #allOffBtn, #logoutBtn, #allOnBtn {
       max-width: 300px;
       width: 90%;
       padding: 12px 25px;
@@ -64,6 +64,9 @@
       display: block;
       color: white;
       transition: opacity 0.3s ease;
+    }
+    #allOnBtn {
+      background-color: #21D115;
     }
     #allOffBtn {
       background-color: #d32f2f;
@@ -182,13 +185,13 @@
         <button id="btn4">Toggle</button>
       </div>
     </div>
-
+    <button id="allOnBtn">ALL ON</button>
     <button id="allOffBtn">All OFF</button>
     <button id="logoutBtn">Logout</button>
   </div>
 
   <footer>
-    Created by Prashant Kumar Mishra
+    Created by Mannu Kumar
   </footer>
 
   <!-- Firebase SDKs -->
@@ -278,6 +281,12 @@
           db.ref("/" + relay.path).set(false);
         });
       };
+      
+      document.getElementById("allOnBtn").onclick = () => {
+        relays.forEach(relay => {
+          db.ref("/" + relay.path).set(true);
+        });
+      };
     }
 
     document.getElementById("logoutBtn").onclick = () => {
@@ -295,4 +304,3 @@
   </script>
 </body>
 </html>
-
